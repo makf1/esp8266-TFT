@@ -13,12 +13,12 @@ GyverBME280 bme;
 #define CENTER_Y 120
 #define ARC_RADIUS 120
 #define ARC_WIDTH 113
-#define ARC_COLOR TFT_YELLOW
+#define ARC_COLOR TFT_PINK
 #define BACKGROUND TFT_BLACK
 // #define PIN_NOT_WAKE 16 // ccs811
 
 // Анимация
-float currentAngle = 30.0;
+float currentAngle = 45.0;
 float animStep = 1.5;
 bool increasing = true;
 uint32_t animTimer = 0;
@@ -80,7 +80,7 @@ void showError(const char* msg) {
 }
 
 void drawStaticUI() {
-  tft.setTextColor(TFT_WHITE);
+  tft.setTextColor(TFT_DARKGREY);
   tft.setTextSize(2);
   tft.drawString("Temp:", 60, 60);
   tft.drawString("Hum:", 60, 80);
@@ -113,34 +113,34 @@ void updateSensorData() {
     }
 
     // Обновление значений
-    tft.setTextColor(TFT_PURPLE);
+    tft.setTextColor(TFT_GOLD);
     tft.setTextSize(2);
     
     // Температура
     tft.fillRect(120, 60, 100, 20, BACKGROUND);
-    tft.drawString(String(temperature,1) + "C", 140, 60);
+    tft.drawString(String(temperature,1) + "C", 120, 60);
     
     // Влажность
     tft.fillRect(120, 80, 100, 20, BACKGROUND);
-    tft.drawString(String(humidity,1) + "%", 140, 80);
+    tft.drawString(String(humidity,1) + "%", 120, 80);
     
     // Давление
     tft.fillRect(120, 100, 100, 20, BACKGROUND);
-    tft.drawString(String(pressure,0) + "hPa", 140, 100);
+    tft.drawString(String(pressure,0) + "hPa", 120, 100);
 
     // CO2
     tft.fillRect(120, 120, 100, 20, BACKGROUND);
-    tft.drawString(String(CO2) + "ppm", 140, 120);
+    tft.drawString(String(CO2) + "ppm", 120, 120);
 
     // TVOC
     tft.fillRect(120, 140, 100, 20, BACKGROUND);
-    tft.drawString(String(tVOC) + "ppb", 140, 140);
+    tft.drawString(String(tVOC) + "ppb", 120, 140);
     
     // Отладка в Serial
     Serial.print("Temp: "); Serial.print(temperature);
     Serial.print(" Hum: "); Serial.print(humidity);
-    Serial.print(" Press: "); Serial.println(pressure);
-    Serial.print(" CO2: "); Serial.println(CO2);
+    Serial.print(" Press: "); Serial.print(pressure);
+    Serial.print(" CO2: "); Serial.print(CO2);
     Serial.print(" tVOC: "); Serial.println(tVOC);
   }
 }
@@ -153,8 +153,11 @@ void drawArc(float angle) {
 }
 
 void updateAnimation() {
-  if (millis() - animTimer > 16) { // ~60 FPS
+  if (millis() - animTimer > 33) { // ~60 FPS(16)
+
     animTimer = millis();
+    Serial.print("Millis: "); Serial.print(millis());
+    Serial.print(" CurrentAngle (start): "); Serial.println(currentAngle);
     
     tft.startWrite();
     //Стираем предыдущую дугу
@@ -165,6 +168,9 @@ void updateAnimation() {
     
     // Обновляем угол
     currentAngle += (increasing ? animStep : -animStep);
+
+    Serial.print("Millis (update): "); Serial.print(millis());
+    Serial.print(" CurrentAngle (update): "); Serial.println(currentAngle);
     
     // Проверка границ
     if (currentAngle >= 315) increasing = false;
@@ -173,6 +179,9 @@ void updateAnimation() {
     // Рисуем новую дугу
     drawArc(currentAngle);
     tft.endWrite();
+
+    Serial.print("Millis (end): "); Serial.print(millis());
+    Serial.print(" CurrentAngle (end): "); Serial.println(currentAngle);
   }
 }
 
