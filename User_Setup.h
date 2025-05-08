@@ -399,8 +399,8 @@
 // Настройка пинов для Wemos D1 Mini
 #define TFT_CS   D8  // Chip Select (GPIO15)
 #define TFT_DC   D4  // Data/Command (GPIO2)
-#define TFT_RST  D2  // Reset (GPIO4)
-#define TFT_BL   D1  // BLK
+// #define TFT_RST  D2  // Reset (GPIO4)
+// #define TFT_BL   D1  // BLK
 
 // Пины SPI (стандартные для ESP8266)
 #define TFT_SCLK D5  // SCK (GPIO14)
