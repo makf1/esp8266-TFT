@@ -388,34 +388,93 @@
 
 // // #define SUPPORT_TRANSACTIONS
 
+/////////////////////////////////////////////////////////////////////////////////////
 
-// Выберите драйвер GC9A01
+// // Выберите драйвер GC9A01
+// #define GC9A01_DRIVER
+
+// // Разрешение дисплея (240x240 для круглого 1.28")
+// #define TFT_WIDTH  240
+// #define TFT_HEIGHT 240
+
+// // Настройка пинов для Wemos D1 Mini
+// #define TFT_CS   D8  // Chip Select (GPIO15)
+// #define TFT_DC   D4  // Data/Command (GPIO2)
+// // #define TFT_RST  D2  // Reset (GPIO4)
+// // #define TFT_BL   D1  // BLK
+
+// // Пины SPI (стандартные для ESP8266)
+// #define TFT_SCLK D5  // SCK (GPIO14)
+// #define TFT_MOSI D7  // MOSI (GPIO13)
+// //#define TFT_MISO D6  // MISO (GPIO12), если используется чтение с дисплея
+
+// // Частота SPI (для GC9A01 лучше 40 МГц)
+// #define SPI_FREQUENCY 40000000 //40000000
+
+// // Инверсия цветов (если изображение инвертировано)
+// #define TFT_INVERSION_ON
+
+// #define LOAD_GFXFF // Для использования продвинутых функций
+// #define SMOOTH_FONT // Если используется кастомный шрифт
+
+// // Графические оптимизации
+// #define AA_FONT_SMALL
+// #define SPI_READ_FREQUENCY 20000000
+
+///////////////////////////////////////////////////////////////////////////////////
+
+// #define ESP32_DMA
+// #define GC9A01_DRIVER
+// #define TFT_WIDTH  240
+// #define TFT_HEIGHT 240
+// #define TFT_MOSI 23
+// #define TFT_MISO -1
+// #define TFT_SCLK 18
+// #define TFT_CS   5
+// #define TFT_DC   16
+// #define TFT_RST  17
+
+///////////////////////////////////////////////////////////////////////////////////
+
+// #define GC9A01_DRIVER
+// #define TFT_WIDTH  240
+// #define TFT_HEIGHT 240
+// #define TFT_MOSI 23
+// #define TFT_SCLK 18
+// #define TFT_CS   5
+// #define TFT_DC   15
+// #define TFT_RST 33
+// #define LOAD_GLCD  // Загрузка стандартного шрифта
+
+///////////////////////////////////////////////////////////////////////////////////
+
+// #define GC9A01_DRIVER
+// #define TFT_WIDTH  240
+// #define TFT_HEIGHT 240
+// #define TFT_MOSI 23
+// #define TFT_SCLK 18
+// #define TFT_CS   5
+// #define TFT_DC   15
+// #define TFT_RST  33
+
+////////////////////////////////////////////
+
+// User_Setup.h для GC9A01 240x240
 #define GC9A01_DRIVER
-
-// Разрешение дисплея (240x240 для круглого 1.28")
 #define TFT_WIDTH  240
 #define TFT_HEIGHT 240
-
-// Настройка пинов для Wemos D1 Mini
-#define TFT_CS   D8  // Chip Select (GPIO15)
-#define TFT_DC   D4  // Data/Command (GPIO2)
-// #define TFT_RST  D2  // Reset (GPIO4)
-// #define TFT_BL   D1  // BLK
-
-// Пины SPI (стандартные для ESP8266)
-#define TFT_SCLK D5  // SCK (GPIO14)
-#define TFT_MOSI D7  // MOSI (GPIO13)
-//#define TFT_MISO D6  // MISO (GPIO12), если используется чтение с дисплея
-
-// Частота SPI (для GC9A01 лучше 40 МГц)
-#define SPI_FREQUENCY 40000000 //40000000
-
-// Инверсия цветов (если изображение инвертировано)
+#define TFT_MOSI   23  // SDA
+#define TFT_SCLK   18  // SCL
+#define TFT_CS     5   // Chip select
+#define TFT_DC     15  // Data/command
+#define TFT_RST    -1  // Reset
+#define SPI_FREQUENCY  40000000
+// #define TFT_BL     4   // Подсветка
 #define TFT_INVERSION_ON
-
-#define LOAD_GFXFF // Для использования продвинутых функций
-#define SMOOTH_FONT // Если используется кастомный шрифт
-
-// Графические оптимизации
-#define AA_FONT_SMALL
-#define SPI_READ_FREQUENCY 20000000
+// #define LOAD_GLCD  // Шрифты
+// #define LOAD_FONT2
+// #define LOAD_FONT4
+// #define LOAD_FONT6
+// #define LOAD_FONT7
+// #define LOAD_FONT8
+// #define SMOOTH_FONT
